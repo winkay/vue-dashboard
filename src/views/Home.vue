@@ -66,7 +66,6 @@ export default {
 <style scoped lang='scss'>
 .home {
   margin: 10px;
-
   .row-margin {
     margin: 10px 20px;
   }
