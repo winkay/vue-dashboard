@@ -19,13 +19,16 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 .custom-header {
+  min-height: 300px;
   border: 4px solid #065278;
+  -moz-box-shadow: 0 -4px 9px 3px #065278 inset; /* 老的 Firefox */
+  box-shadow: 0 -4px 9px 3px #065278 inset;
   background-color: rgba(255, 255, 255, 0);
 
   .el-card__header {
     height: 36px;
     text-align: left;
-    padding: 6px 20px;
+    padding: 2px 20px;
     background-image: linear-gradient(to right, rgba(38, 82, 120, 1), rgba(3, 11, 31, 0));
     border-bottom: 0px solid #EBEEF5;
 
