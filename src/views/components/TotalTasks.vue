@@ -3,7 +3,7 @@
     <template v-slot:content>
       <div>
         <img src="../../../static/images/subtitle.png" />
-        <span class="task-title">总任务数</span>
+        <span class="task-title">{{title}}</span>
         <img src="../../../static/images/subtitle.png" />
       </div>
       <div style="margin: 30px 0; display: inline-block;">
@@ -26,7 +26,19 @@ export default {
   },
   data() {
     return {
-      taskNum: '23123'
+      title: '总任务数',
+      taskNum: '0'
+    }
+  },
+  mounted() {
+    this.getData()
+  },
+  methods: {
+    getData() {
+      this.$axios.get('../../../static/data/totaltask.json').then((res) => {
+        this.title = res.title
+        this.taskNum = res.data
+      })
     }
   }
 }
