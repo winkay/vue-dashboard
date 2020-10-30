@@ -1,5 +1,5 @@
 <template>
-  <common-card title="AI资源池情况">
+  <common-card :title="title">
     <template v-slot:content>
       <div style='text-align: left;'>
         <el-row style="margin-top:20px">
@@ -8,7 +8,7 @@
               <img src="../../../static/images/image.png" />
             </div>
             <div class="res-desc">
-              <span class='res-num'>34</span>
+              <span class='res-num'>{{result.image}}</span>
               <span class='res-unit'>个</span>
               <br />
               <span class='res-name'>镜像</span>
@@ -19,7 +19,7 @@
               <img src="../../../static/images/node.png" />
             </div>
             <div class="res-desc">
-              <span class='res-num'>462</span>
+              <span class='res-num'>{{result.node}}</span>
               <span class='res-unit'>个</span>
               <br />
               <span class='res-name'>节点</span>
@@ -32,7 +32,7 @@
               <img src="../../../static/images/storage.png" />
             </div>
             <div class="res-desc">
-              <span class='res-num'>68.5</span>
+              <span class='res-num'>{{result.storage}}</span>
               <span class='res-unit'>GB</span>
               <br />
               <span class='res-name'>存储</span>
@@ -43,7 +43,7 @@
               <img src="../../../static/images/gpu.png" />
             </div>
             <div class="res-desc">
-              <span class='res-num'>16</span>
+              <span class='res-num'>{{result.gpu}}</span>
               <span class='res-unit'>个</span>
               <br />
               <span class='res-name'>GPU</span>
@@ -63,6 +63,28 @@ export default {
   name: 'Resources',
   components: {
     CommonCard
+  },
+  data() {
+    return {
+      title: 'AI资源池情况',
+      result: {
+        image: 0,
+        node: 0,
+        storage: 0,
+        gpu: 0
+      }
+    }
+  },
+  mounted() {
+    this.getData()
+  },
+  methods: {
+    getData() {
+      this.$axios.get('../../../static/data/resources.json').then((res) => {
+        this.title = res.title
+        this.result = Object.assign({}, this.result, res.data)
+      })
+    }
   }
 }
 </script>

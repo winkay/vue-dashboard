@@ -19,7 +19,7 @@ export default {
     CommonCard,
     TabSwitcher
   },
-  data () {
+  data() {
     return {
       option: {
         color: ['#4a9df2'],
@@ -96,7 +96,7 @@ export default {
                 offset: 1,
                 color: 'rgba(0, 0, 0, 0)'
               }])
-            },
+            }
           },
           {
             name: '内存',
@@ -115,7 +115,7 @@ export default {
                 offset: 1,
                 color: 'rgba(0, 0, 0, 0)'
               }])
-            },
+            }
           },
           {
             name: '存储',
@@ -134,8 +134,8 @@ export default {
                 offset: 1,
                 color: 'rgba(0, 0, 0, 0)'
               }])
-            },
-          },
+            }
+          }
         ],
         legend: {
           itemWidth: 6,
@@ -153,7 +153,7 @@ export default {
     tabChange(tab) {
       console.log(tab)
     }
-  },
+  }
 }
 </script>
 

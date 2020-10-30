@@ -11,11 +11,11 @@
 const tabList = [
   { title: 'node1' },
   { title: 'node2' },
-  { title: 'node3' },
+  { title: 'node3' }
 ]
 export default {
   name: 'TabSwitcher',
-  data () {
+  data() {
     return {
       tabList,
       current: 'node1'

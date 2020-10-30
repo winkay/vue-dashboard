@@ -1,0 +1,9 @@
+{
+  "title": "AI资源池情况",
+  "data": {
+    "image": 34,
+    "node": 462,
+    "storage": 65,
+    "gpu": 16
+  }
+}

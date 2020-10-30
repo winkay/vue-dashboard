@@ -15,7 +15,7 @@ export default {
   components: {
     CommonCard
   },
-  data () {
+  data() {
     return {
       option: {
         tooltip: {
@@ -33,7 +33,7 @@ export default {
         },
         xAxis: [
           {
-            data: ['10-21', '10-22', '10-23', '10-24', '10-25', '10-26', '10-27', '10-28', '10-29', ],
+            data: ['10-21', '10-22', '10-23', '10-24', '10-25', '10-26', '10-27', '10-28', '10-29'],
             axisLine: {
               lineStyle: {
                 color: '#4e548b'
@@ -85,7 +85,7 @@ export default {
         ]
       }
     }
-  },
+  }
 }
 </script>
 

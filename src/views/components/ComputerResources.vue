@@ -9,14 +9,13 @@
 <script>
 // @ is an alias to /src
 import CommonCard from '@/components/CommonCard.vue'
-import echarts from 'echarts'
 
 export default {
   name: 'ComputerResources',
   components: {
     CommonCard
   },
-  data () {
+  data() {
     return {
       option: {
         color: ['#4a9df2'],
@@ -100,7 +99,7 @@ export default {
             itemStyle: {
               color: '#fff006'
             }
-          },
+          }
         ],
         legend: {
           itemWidth: 10,
@@ -113,7 +112,7 @@ export default {
         }
       }
     }
-  },
+  }
 }
 </script>
 
