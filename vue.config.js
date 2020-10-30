@@ -1,4 +1,5 @@
 const path = require('path')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -7,7 +8,6 @@ function resolve(dir) {
 module.exports = {
   // options
   publicPath: '/',
-
   outputDir: 'dist',
   indexPath: 'index.html',
   lintOnSave: process.env.NODE_ENV === 'development',
@@ -23,7 +23,14 @@ module.exports = {
       alias: {
         '@': resolve('src')
       }
-    }
+    },
+    plugins: [
+      new CopyWebpackPlugin({
+        patterns: [
+          { from: './static', to: 'static' }
+        ]
+      })
+    ]
   },
 
   transpileDependencies: [
