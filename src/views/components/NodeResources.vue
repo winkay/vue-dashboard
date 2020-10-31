@@ -1,5 +1,5 @@
 <template>
-  <common-card title="节点资源使用">
+  <common-card :title="title">
     <template v-slot:content>
       <tab-switcher @change="tabChange"/>
       <v-chart :options='option' style="height:160px; width:100%;margin-top: 15px;" :autoresize='true'/>
@@ -21,6 +21,7 @@ export default {
   },
   data() {
     return {
+      title: '节点资源使用',
       option: {
         color: ['#4a9df2'],
         tooltip: {
@@ -79,9 +80,9 @@ export default {
         ],
         series: [
           {
-            name: 'GPU',
+            name: 'CPU',
             type: 'line',
-            data: [10, 52, 200, 334, 390, 330, 220, 22, 33, 52, 12, 66, 264],
+            data: [10, 52, 20, 33.4, 39, 33, 22, 22, 33, 52, 12, 66, 26.4],
             symbol: 'none',
             // sampling: 'average',
             smooth: true,
@@ -101,7 +102,7 @@ export default {
           {
             name: '内存',
             type: 'line',
-            data: [52, 10, 52, 334, 330, 334, 220, 520, 10, 52, 334, 330, 334, 220, 50],
+            data: [52, 10, 52, 34, 33, 33.4, 22, 52, 10, 52, 85, 33, 33, 22, 50],
             symbol: 'none',
             smooth: true,
             itemStyle: {
@@ -120,7 +121,7 @@ export default {
           {
             name: '存储',
             type: 'line',
-            data: [200, 10, 52, 334, 330, 334, 20, 520, 100, 52, 34, 330, 334, 220, 50],
+            data: [2, 10, 52, 33.4, 33, 45, 20, 52, 100, 52, 34, 33, 34, 22, 50],
             symbol: 'none',
             smooth: true,
             itemStyle: {
@@ -149,9 +150,21 @@ export default {
       }
     }
   },
+  mounted() {
+    this.getData()
+  },
   methods: {
     tabChange(tab) {
       console.log(tab)
+    },
+    getData() {
+      this.$axios.get('../../../static/data/node-resources.json').then((res) => {
+        this.title = res.title
+        this.option.xAxis[0].data = res.data.xdata
+        this.option.series[0].data = res.data.cpu
+        this.option.series[1].data = res.data.memory
+        this.option.series[2].data = res.data.storage
+      })
     }
   }
 }

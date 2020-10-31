@@ -1,5 +1,5 @@
 <template>
-  <common-card title="热门AI框架">
+  <common-card :title="title">
     <template v-slot:content>
       <v-chart
         :options="option"
@@ -21,6 +21,7 @@ export default {
   },
   data() {
     return {
+      title: '热门AI框架',
       option: {
         tooltip: {
           formatter: (params, ticket, callback) => {
@@ -46,23 +47,23 @@ export default {
             },
             data: [
               {
-                name: '校园大数据',
+                name: '图像处理',
                 symbolSize: 120,
                 category: 0,
                 itemStyle: {
                   normal: {
-                    borderColor: '#04f2a7',
+                    borderColor: '#3dee7b',
                     borderWidth: 6,
                     color: '#001c43'
                   }
                 }
               },
               {
-                name: '舆情大数据',
+                name: '人像识别',
                 symbolSize: 100,
                 itemStyle: {
                   normal: {
-                    borderColor: '#04f2a7',
+                    borderColor: '#c105fb',
                     borderWidth: 4,
                     color: '#001c43'
                   }
@@ -70,7 +71,7 @@ export default {
                 category: 1
               },
               {
-                name: '用户分析',
+                name: '车辆识别',
                 symbolSize: 80,
                 category: 1,
                 itemStyle: {
@@ -82,7 +83,7 @@ export default {
                 }
               },
               {
-                name: '话题分析',
+                name: '实时计算',
                 symbolSize: 80,
                 category: 1,
                 itemStyle: {
@@ -94,57 +95,35 @@ export default {
                 }
               },
               {
-                name: '评论分析',
+                name: 'BI',
                 symbolSize: 80,
                 category: 1,
                 itemStyle: {
                   normal: {
-                    borderColor: '#82dffe',
+                    borderColor: '#fff006',
                     borderWidth: 4,
                     color: '#001c43'
                   }
                 }
-              },
-              {
-                name: '图书馆分析',
-                symbolSize: 100,
-                category: 2,
-                itemStyle: {
-                  normal: {
-                    borderColor: '#82dffe',
-                    borderWidth: 4,
-                    color: '#001c43'
-                  }
-                }
-              },
-              {
-                name: '借阅分析',
-                symbolSize: 80,
-                category: 2,
-                itemStyle: {
-                  normal: {
-                    borderColor: '#b457ff',
-                    borderWidth: 4,
-                    color: '#001c43'
-                  }
-                }
-              },
-              {
-                name: '借阅排行',
-                symbolSize: 80,
-                itemStyle: {
-                  normal: {
-                    borderColor: '#82dffe',
-                    borderWidth: 4,
-                    color: '#001c43'
-                  }
-                },
-                category: 2
               }
             ]
           }
         ]
       }
+    }
+  },
+  mounted() {
+    this.getData()
+  },
+  methods: {
+    getData() {
+      this.$axios.get('../../../static/data/framework.json').then((res) => {
+        this.title = res.title
+        for (let index = 0; index < res.data.length; index++) {
+          const data = res.data[index]
+          this.option.series[0].data[index].symbolSize = data
+        }
+      })
     }
   }
 }

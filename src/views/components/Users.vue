@@ -1,5 +1,5 @@
 <template>
-  <common-card title="用户数">
+  <common-card :title="title">
     <template v-slot:content>
       <v-chart :options='option' style="height:220px; width:100%;" :autoresize='true'/>
     </template>
@@ -17,6 +17,7 @@ export default {
   },
   data() {
     return {
+      title: '用户数',
       option: {
         color: ['#4a9df2'],
         tooltip: {
@@ -76,11 +77,23 @@ export default {
           {
             name: '用户数',
             type: 'bar',
-            barWidth: '60%',
+            barWidth: '19px',
             data: [10, 52, 200, 334, 390, 330, 220]
           }
         ]
       }
+    }
+  },
+  mounted() {
+    this.getData()
+  },
+  methods: {
+    getData() {
+      this.$axios.get('../../../static/data/users.json').then((res) => {
+        this.title = res.title
+        this.option.xAxis[0].data = res.data.xdata
+        this.option.series[0].data = res.data.user
+      })
     }
   }
 }

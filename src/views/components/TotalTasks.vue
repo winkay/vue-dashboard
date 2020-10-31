@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     getData() {
-      this.$axios.get('../../../static/data/totaltask.json').then((res) => {
+      this.$axios.get('../../../static/data/total-task.json').then((res) => {
         this.title = res.title
         this.taskNum = res.data
       })

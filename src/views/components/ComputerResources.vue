@@ -1,5 +1,5 @@
 <template>
-  <common-card title="计算资源利用率">
+  <common-card :title="title">
     <template v-slot:content>
       <v-chart :options='option' style="height:220px; width:100%;" :autoresize='true'/>
     </template>
@@ -17,6 +17,7 @@ export default {
   },
   data() {
     return {
+      title: '',
       option: {
         color: ['#4a9df2'],
         tooltip: {
@@ -76,7 +77,7 @@ export default {
           {
             name: 'CPU利用率',
             type: 'line',
-            data: [10, 52, 200, 334, 390, 330, 220, 22, 33, 52, 12, 66, 264],
+            data: [10, 52, 20, 34, 39, 33, 22, 22, 33, 52, 12, 66, 64],
             symbol: 'circle',
             itemStyle: {
               color: '#4a9df2'
@@ -85,7 +86,7 @@ export default {
           {
             name: 'GPU利用率',
             type: 'line',
-            data: [52, 10, 52, 334, 330, 334, 220, 520, 10, 52, 334, 330, 334, 220, 50],
+            data: [52, 10, 52, 55, 44, 88, 22, 25, 10, 52, 68, 99, 21, 54, 50],
             symbol: 'circle',
             itemStyle: {
               color: '#29F2FF'
@@ -94,7 +95,7 @@ export default {
           {
             name: 'GPU显存利用率',
             type: 'line',
-            data: [200, 10, 52, 334, 330, 334, 20, 520, 100, 52, 34, 330, 334, 220, 50],
+            data: [30, 35, 12, 40, 55, 88, 78, 68, 56, 52, 34, 87, 55, 22, 50],
             symbol: 'circle',
             itemStyle: {
               color: '#fff006'
@@ -111,6 +112,20 @@ export default {
           icon: 'circle'
         }
       }
+    }
+  },
+  mounted() {
+    this.getData()
+  },
+  methods: {
+    getData() {
+      this.$axios.get('../../../static/data/computer-resources.json').then((res) => {
+        this.title = res.title
+        this.option.xAxis[0].data = res.data.xdata
+        this.option.series[0].data = res.data.cpu
+        this.option.series[1].data = res.data.gpu
+        this.option.series[2].data = res.data.gpuMem
+      })
     }
   }
 }

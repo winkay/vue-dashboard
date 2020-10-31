@@ -1,5 +1,5 @@
 <template>
-  <common-card title="历史任务数">
+  <common-card :title="title">
     <template v-slot:content>
       <v-chart :options='option' style="height:210px; width:100%;" :autoresize='true'/>
     </template>
@@ -18,6 +18,7 @@ export default {
   },
   data() {
     return {
+      title: '历史任务数',
       option: {
         color: ['#4a9df2'],
         tooltip: {
@@ -122,6 +123,19 @@ export default {
           icon: 'circle'
         }
       }
+    }
+  },
+  mounted() {
+    this.getData()
+  },
+  methods: {
+    getData() {
+      this.$axios.get('../../../static/data/history-tasks.json').then((res) => {
+        this.title = res.title
+        this.option.xAxis[0].data = res.data.xdata
+        this.option.series[0].data = res.data.dev
+        this.option.series[1].data = res.data.task
+      })
     }
   }
 }
