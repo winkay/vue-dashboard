@@ -13,6 +13,8 @@
 <script>
 // @ is an alias to /src
 import CommonCard from '@/components/CommonCard.vue'
+// import datas from '../../../static/data/framework.json'
+const datas = window.mockData.framework
 
 export default {
   name: 'Framework',
@@ -113,17 +115,22 @@ export default {
     }
   },
   mounted() {
-    this.getData()
+    this.getData(datas)
   },
   methods: {
-    getData() {
-      this.$axios.get('../../../static/data/framework.json').then((res) => {
-        this.title = res.title
-        for (let index = 0; index < res.data.length; index++) {
-          const data = res.data[index]
-          this.option.series[0].data[index].symbolSize = data
-        }
-      })
+    getData(res) {
+      this.title = res.title
+      for (let index = 0; index < res.data.length; index++) {
+        const data = res.data[index]
+        this.option.series[0].data[index].symbolSize = data
+      }
+      // this.$axios.get('../../../static/data/framework.json').then((res) => {
+      //   this.title = res.title
+      //   for (let index = 0; index < res.data.length; index++) {
+      //     const data = res.data[index]
+      //     this.option.series[0].data[index].symbolSize = data
+      //   }
+      // })
     }
   }
 }

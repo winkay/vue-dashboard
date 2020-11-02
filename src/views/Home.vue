@@ -1,9 +1,10 @@
 <template>
   <div class="home">
     <div class="home-title">
-      <img src="../../static/images/toptitle.png" style="margin: 0 auto;"/>
+      <!-- <img src="../../static/images/toptitle.png" style="margin: 0 auto;"/> -->
+      <span>{{name}}</span>
     </div>
-    <el-row :gutter='8' class="row-margin">
+    <el-row :gutter='8'>
       <el-col :span='6'>
         <resources/>
       </el-col>
@@ -54,11 +55,17 @@ import GPU from './components/GPU.vue'
 import Memory from './components/Memory.vue'
 import Storage from './components/Storage.vue'
 import ComputerResources from './components/ComputerResources.vue'
+const name = window.mockData.name
 
 export default {
   name: 'Home',
   components: {
     Resources, TotalTasks, Users, NodeResources, HistoryTasks, Framework, GPU, Memory, Storage, ComputerResources
+  },
+  data() {
+    return {
+      name: name
+    }
   }
 }
 </script>
@@ -68,6 +75,19 @@ export default {
   margin: 10px;
   .row-margin {
     margin: 10px 20px;
+  }
+
+  .home-title {
+    background: url(../../static/images/topimg.png) no-repeat center;
+    height: 80px;
+    // margin-bottom: 10px;
+
+    span {
+      font-size: 50px;
+      line-height: 50px;
+      font-weight: bold;
+      color: #0fbfd7;
+    }
   }
 }
 </style>

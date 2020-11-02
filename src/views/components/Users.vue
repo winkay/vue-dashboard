@@ -9,6 +9,7 @@
 <script>
 // @ is an alias to /src
 import CommonCard from '@/components/CommonCard.vue'
+const datas = window.mockData.users
 
 export default {
   name: 'Users',
@@ -85,15 +86,18 @@ export default {
     }
   },
   mounted() {
-    this.getData()
+    this.getData(datas)
   },
   methods: {
-    getData() {
-      this.$axios.get('../../../static/data/users.json').then((res) => {
-        this.title = res.title
-        this.option.xAxis[0].data = res.data.xdata
-        this.option.series[0].data = res.data.user
-      })
+    getData(res) {
+      this.title = res.title
+      this.option.xAxis[0].data = res.data.xdata
+      this.option.series[0].data = res.data.user
+      // this.$axios.get('../../../static/data/users.json').then((res) => {
+      //   this.title = res.title
+      //   this.option.xAxis[0].data = res.data.xdata
+      //   this.option.series[0].data = res.data.user
+      // })
     }
   }
 }

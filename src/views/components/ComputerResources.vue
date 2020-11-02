@@ -9,9 +9,10 @@
 <script>
 // @ is an alias to /src
 import CommonCard from '@/components/CommonCard.vue'
+const datas = window.mockData['computer-resources']
 
 export default {
-  name: 'ComputerResources',
+  name: 'datas',
   components: {
     CommonCard
   },
@@ -115,17 +116,22 @@ export default {
     }
   },
   mounted() {
-    this.getData()
+    this.getData(datas)
   },
   methods: {
-    getData() {
-      this.$axios.get('../../../static/data/computer-resources.json').then((res) => {
-        this.title = res.title
-        this.option.xAxis[0].data = res.data.xdata
-        this.option.series[0].data = res.data.cpu
-        this.option.series[1].data = res.data.gpu
-        this.option.series[2].data = res.data.gpuMem
-      })
+    getData(res) {
+      this.title = res.title
+      this.option.xAxis[0].data = res.data.xdata
+      this.option.series[0].data = res.data.cpu
+      this.option.series[1].data = res.data.gpu
+      this.option.series[2].data = res.data.gpuMem
+      // this.$axios.get('../../../static/data/computer-resources.json').then((res) => {
+      //   this.title = res.title
+      //   this.option.xAxis[0].data = res.data.xdata
+      //   this.option.series[0].data = res.data.cpu
+      //   this.option.series[1].data = res.data.gpu
+      //   this.option.series[2].data = res.data.gpuMem
+      // })
     }
   }
 }

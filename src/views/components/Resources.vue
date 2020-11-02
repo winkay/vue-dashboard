@@ -58,6 +58,7 @@
 <script>
 // @ is an alias to /src
 import CommonCard from '@/components/CommonCard.vue'
+const datas = window.mockData.resources
 
 export default {
   name: 'Resources',
@@ -76,14 +77,16 @@ export default {
     }
   },
   mounted() {
-    this.getData()
+    this.getData(datas)
   },
   methods: {
-    getData() {
-      this.$axios.get('../../../static/data/resources.json').then((res) => {
-        this.title = res.title
-        this.result = Object.assign({}, this.result, res.data)
-      })
+    getData(res) {
+      this.title = res.title
+      this.result = Object.assign({}, this.result, res.data)
+      // this.$axios.get('../../../static/data/resources.json').then((res) => {
+      //   this.title = res.title
+      //   this.result = Object.assign({}, this.result, res.data)
+      // })
     }
   }
 }

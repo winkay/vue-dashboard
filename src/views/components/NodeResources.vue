@@ -12,6 +12,7 @@
 import CommonCard from '@/components/CommonCard.vue'
 import echarts from 'echarts'
 import TabSwitcher from './TabSwitcher'
+const datas = window.mockData['computer-resources']
 
 export default {
   name: 'NodeResources',
@@ -151,20 +152,25 @@ export default {
     }
   },
   mounted() {
-    this.getData()
+    this.getData(datas)
   },
   methods: {
     tabChange(tab) {
       console.log(tab)
     },
-    getData() {
-      this.$axios.get('../../../static/data/node-resources.json').then((res) => {
-        this.title = res.title
-        this.option.xAxis[0].data = res.data.xdata
-        this.option.series[0].data = res.data.cpu
-        this.option.series[1].data = res.data.memory
-        this.option.series[2].data = res.data.storage
-      })
+    getData(res) {
+      this.title = res.title
+      this.option.xAxis[0].data = res.data.xdata
+      this.option.series[0].data = res.data.cpu
+      this.option.series[1].data = res.data.memory
+      this.option.series[2].data = res.data.storage
+      // this.$axios.get('../../../static/data/node-resources.json').then((res) => {
+      //   this.title = res.title
+      //   this.option.xAxis[0].data = res.data.xdata
+      //   this.option.series[0].data = res.data.cpu
+      //   this.option.series[1].data = res.data.memory
+      //   this.option.series[2].data = res.data.storage
+      // })
     }
   }
 }

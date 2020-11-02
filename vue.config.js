@@ -7,7 +7,7 @@ function resolve(dir) {
 
 module.exports = {
   // options
-  publicPath: '/',
+  publicPath: './',
   outputDir: 'dist',
   indexPath: 'index.html',
   lintOnSave: process.env.NODE_ENV === 'development',

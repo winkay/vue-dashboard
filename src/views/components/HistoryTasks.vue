@@ -10,6 +10,7 @@
 // @ is an alias to /src
 import CommonCard from '@/components/CommonCard.vue'
 import echarts from 'echarts'
+const datas = window.mockData['history-tasks']
 
 export default {
   name: 'HistoryTasks',
@@ -126,16 +127,20 @@ export default {
     }
   },
   mounted() {
-    this.getData()
+    this.getData(datas)
   },
   methods: {
-    getData() {
-      this.$axios.get('../../../static/data/history-tasks.json').then((res) => {
-        this.title = res.title
-        this.option.xAxis[0].data = res.data.xdata
-        this.option.series[0].data = res.data.dev
-        this.option.series[1].data = res.data.task
-      })
+    getData(res) {
+      this.title = res.title
+      this.option.xAxis[0].data = res.data.xdata
+      this.option.series[0].data = res.data.dev
+      this.option.series[1].data = res.data.task
+      // this.$axios.get('../../../static/data/history-tasks.json').then((res) => {
+      //   this.title = res.title
+      //   this.option.xAxis[0].data = res.data.xdata
+      //   this.option.series[0].data = res.data.dev
+      //   this.option.series[1].data = res.data.task
+      // })
     }
   }
 }

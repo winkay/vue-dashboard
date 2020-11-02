@@ -9,6 +9,7 @@
 <script>
 // @ is an alias to /src
 import CommonCard from '@/components/CommonCard.vue'
+const datas = window.mockData.memory
 
 export default {
   name: 'Memory',
@@ -88,15 +89,18 @@ export default {
     }
   },
   mounted() {
-    this.getData()
+    this.getData(datas)
   },
   methods: {
-    getData() {
-      this.$axios.get('../../../static/data/memory.json').then((res) => {
-        this.title = res.title
-        this.option.xAxis[0].data = res.data.xdata
-        this.option.series[0].data = res.data.ydata
-      })
+    getData(res) {
+      this.title = res.title
+      this.option.xAxis[0].data = res.data.xdata
+      this.option.series[0].data = res.data.ydata
+      // this.$axios.get('../../../static/data/memory.json').then((res) => {
+      //   this.title = res.title
+      //   this.option.xAxis[0].data = res.data.xdata
+      //   this.option.series[0].data = res.data.ydata
+      // })
     }
   }
 }

@@ -6,13 +6,15 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'echarts'
 import VueECharts from 'vue-echarts'
-import { VueAxios } from './utils/request'
+// import { VueAxios } from './utils/request'
+// import mockData from '../static/mock.json'
 
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
 Vue.component('v-chart', VueECharts)
-Vue.use(VueAxios)
+// Vue.use(VueAxios)
+// window.mockData = mockData
 
 new Vue({
   router,

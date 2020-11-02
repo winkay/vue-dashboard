@@ -18,6 +18,7 @@
 <script>
 // @ is an alias to /src
 import CommonCard from '@/components/CommonCard.vue'
+const datas = window.mockData['total-task']
 
 export default {
   name: 'TotalTasks',
@@ -31,14 +32,16 @@ export default {
     }
   },
   mounted() {
-    this.getData()
+    this.getData(datas)
   },
   methods: {
-    getData() {
-      this.$axios.get('../../../static/data/total-task.json').then((res) => {
-        this.title = res.title
-        this.taskNum = res.data
-      })
+    getData(res) {
+      this.title = res.title
+      this.taskNum = res.data
+      // this.$axios.get('../../../static/data/total-task.json').then((res) => {
+      //   this.title = res.title
+      //   this.taskNum = res.data
+      // })
     }
   }
 }
